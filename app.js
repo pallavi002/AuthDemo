@@ -33,11 +33,13 @@ app.get('/secret', function(req, res) {
 });
 
 app.get('/register', function(req,res){
+  let user = User.find({})
+  console.log(user)
   res.render('register.ejs');
 })
 
 app.post('/register', function(req, res) {
-  User.register( new User({ username: req.body.username }), req.body.password , function(err, user) {
+  User.register(new User({ username: req.body.username }), req.body.password , function(err, user) {
     if(err) {
       console.log(err);
       return res.render('register.ejs');
